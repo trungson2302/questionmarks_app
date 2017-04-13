@@ -110,11 +110,11 @@ public class MainActivity extends AppCompatActivity {
     public void startTimer(CountDownTimer _timer)
     {
 
-        _timer=new CountDownTimer(4000,1000) {
-            int a=3,check=0;
+        _timer=new CountDownTimer(5000,1000) {
+            int a=4;
             @Override
             public void onTick(long millisUntilFinished) {
-                check=a-1;
+
                 tvTime.setText((a-1)+"s");
                 a--;
 
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                cancleTimer(this);
+
             tvTime.setText((a-1)+"");
             Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
             checktimer=0;
