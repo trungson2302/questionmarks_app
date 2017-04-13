@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=10,diem=0;
+    int index=0,socau=10,diem=0,checktimer=1;
      CountDownTimer timer;
 
     @Override
@@ -56,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        cancleTimer(timer);
+                        if(checktimer!=0)cancleTimer(timer);
+
                         //timer.start();
                         startTimer(timer);
                     }else
                     {
-                        cancleTimer(timer);
+                       // if(checktimer!=0)cancleTimer(timer);
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
@@ -87,17 +88,16 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        cancleTimer(timer);
+                        if(checktimer!=0)cancleTimer(timer);
                         //timer.start();
                         startTimer(timer);
                     }else
                     {
-                        cancleTimer(timer);
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }else{
-                    cancleTimer(timer);
+                    if(checktimer!=0)cancleTimer(timer);
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 cancleTimer(this);
             tvTime.setText((a-1)+"");
             Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-
+            checktimer=0;
 
             }
         };
