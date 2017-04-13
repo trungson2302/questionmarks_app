@@ -1,6 +1,7 @@
 package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +44,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         stopService(playMusic);
-        android.os.Process.killProcess(android.os.Process.myPid());
+        finish();
+        System.exit(0);
     }
 
     @Override
