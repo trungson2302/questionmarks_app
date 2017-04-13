@@ -51,4 +51,4 @@
         android:background="@drawable/true_button"
 
         android:text="Thoat" />
-</>
+</LinearLayout>
