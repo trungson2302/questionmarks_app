@@ -43,7 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         stopService(playMusic);
-        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     @Override

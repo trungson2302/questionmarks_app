@@ -4,8 +4,13 @@ import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
+    LinearLayout lnl;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=30,diem=0,checktimer=1;
+    Animation animation;
      CountDownTimer timer=new CountDownTimer(12000,1000) {
          int a=10;
          @Override
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnNo=(Button) findViewById(R.id.button2);
         tvDiem=(TextView)findViewById( R.id.textView4);
         tvTime=(TextView)findViewById(R.id.textView5);
-
+        lnl=(LinearLayout)findViewById(R.id.linearLayout);
         Typeface typeface=Typeface.createFromAsset(getAssets(),"OpenSans-Regular.ttf");
         tvCauhoi.setTypeface(typeface);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
@@ -97,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
+                    ImageView imgv=new ImageView(MainActivity.this);
+                    lnl.addView(imgv);
+                    runAnimation(imgv);
                 }
 
             }
@@ -126,7 +136,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
-                }
+                    ImageView imgv=new ImageView(MainActivity.this);
+                    lnl.addView(imgv);
+                    runAnimation(imgv);
+                    }
 
             }
         });
@@ -163,6 +176,15 @@ public class MainActivity extends AppCompatActivity {
         tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
         if(index<socau){
         index++;}
+    }
+    public void runAnimation(ImageView imageView)
+    {
+        animation=AnimationUtils.loadAnimation(this,R.anim.troll_face);
+        imageView.setImageResource(R.drawable.troll_face);
+        LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity=Gravity.CENTER;
+        imageView.setLayoutParams(layoutParams);
+        imageView.startAnimation(animation);
     }
 
     @Override
