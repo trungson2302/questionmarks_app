@@ -40,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi.close();
         quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         ds_cauhoi=quanLyCauHoi.layNcaungaunhien(socau);
+        quanLyCauHoi.close();
         inCauhoi(index);
-        startTimer(timer);
+        //startTimer(timer);
         //timer.start();
 
         btnYes.setOnClickListener(new View.OnClickListener() {
@@ -56,19 +57,19 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        if(checktimer!=0)cancleTimer(timer);
+                        //if(checktimer!=0)cancleTimer(timer);
 
                         //timer.start();
                         startTimer(timer);
                     }else
                     {
-                       // if(checktimer!=0)cancleTimer(timer);
+
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }
                 else {
-                    cancleTimer(timer);
+                    // if(checktimer!=0)cancleTimer(timer);
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        if(checktimer!=0)cancleTimer(timer);
+                        //if(checktimer!=0)cancleTimer(timer);
                         //timer.start();
                         startTimer(timer);
                     }else
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         btnNo.setClickable(false);
                     }
                 }else{
-                    if(checktimer!=0)cancleTimer(timer);
+                    //if(checktimer!=0)cancleTimer(timer);
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
