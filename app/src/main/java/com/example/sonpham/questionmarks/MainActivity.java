@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=30,diem=0,checktimer=1;
     Animation animation;
+    //CountDownTimer timer;
      CountDownTimer timer=new CountDownTimer(12000,1000) {
          int a=10;
          @Override
@@ -44,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
              Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
              btnYes.setClickable(false);
              btnNo.setClickable(false);
+             ImageView imgv=new ImageView(MainActivity.this);
+             //((ViewManager)tvCauhoi.getParent()).removeView(tvCauhoi);
+             //lnl.removeView(tvCauhoi);
+             lnl.addView(imgv);
+
+             runAnimation(imgv);
              checktimer=0;
 
          }
@@ -105,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
                     ImageView imgv=new ImageView(MainActivity.this);
+                    //((ViewManager)tvCauhoi.getParent()).removeView(tvCauhoi);
+                    //lnl.removeView(tvCauhoi);
                     lnl.addView(imgv);
+
                     runAnimation(imgv);
                 }
 
@@ -137,7 +148,10 @@ public class MainActivity extends AppCompatActivity {
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
                     ImageView imgv=new ImageView(MainActivity.this);
+                    //((ViewManager)tvCauhoi.getParent()).removeView(tvCauhoi);
+                    //lnl.removeView(tvCauhoi);
                     lnl.addView(imgv);
+
                     runAnimation(imgv);
                     }
 
@@ -145,33 +159,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-//    public void startTimer(CountDownTimer _timer)
-//    {
-//
-//        _timer=new CountDownTimer(5000,1000) {
-//            int a=4;
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//
-//                tvTime.setText((a-1)+"s");
-//                a--;
-//
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//
-//            tvTime.setText((a-1)+"");
-//            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-//            checktimer=0;
-//
-//            }
-//        };
-//        _timer.start();
-//    }
-//    public void cancleTimer(CountDownTimer _timer){
-//        _timer.cancel();
-//    }
+    public void startTimer(CountDownTimer _timer)
+    {
+
+        _timer=new CountDownTimer(6000,1000) {
+            int a=3;
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                tvTime.setText((a-1)+"s");
+                if(a==0){
+                    onFinish();
+                    cancel();
+                }
+                a--;
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            tvTime.setText((a-1)+"");
+            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
+            checktimer=0;
+
+            }
+        };
+        _timer.start();
+    }
+    public void cancleTimer(CountDownTimer _timer){
+        _timer.cancel();
+    }
     public void inCauhoi(int n){
         tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
         if(index<socau){
@@ -180,9 +198,11 @@ public class MainActivity extends AppCompatActivity {
     public void runAnimation(ImageView imageView)
     {
         animation=AnimationUtils.loadAnimation(this,R.anim.troll_face);
+        animation.setFillAfter(true);
         imageView.setImageResource(R.drawable.troll_face);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;
+
         imageView.setLayoutParams(layoutParams);
         imageView.startAnimation(animation);
     }

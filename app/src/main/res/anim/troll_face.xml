@@ -17,6 +17,7 @@
         android:pivotX="50%"
         android:startOffset="700"
         android:duration="3000"
+        android:fillAfter="false"
 
         />
 
