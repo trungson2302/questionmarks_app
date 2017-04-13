@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainMenuActivity extends AppCompatActivity {
     Button btnChoimoi,btnDiemcao,btnGioithieu,btnThoat,btnHuongdan;
+    Intent playMusic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +20,13 @@ public class MainMenuActivity extends AppCompatActivity {
         btnThoat=(Button)findViewById(R.id.button7);
 
         final Intent choimoi=new Intent(MainMenuActivity.this,MainActivity.class);
+        playMusic=new Intent(MainMenuActivity.this,PlayMusic.class);
+        startService(playMusic);
         btnChoimoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(choimoi);
+                //onStop();
 
             }
         });
@@ -32,6 +36,37 @@ public class MainMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopService(playMusic);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(playMusic);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //stopService(playMusic);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startService(playMusic);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startService(playMusic);
+    }
 }

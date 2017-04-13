@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
              //tvTime.setText((a-1)+"");
              Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
+             btnYes.setClickable(false);
+             btnNo.setClickable(false);
              checktimer=0;
 
          }
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase(a)){
 
                     diem+=100;
-                    tvDiem.setText("point: "+diem);
+                    tvDiem.setText("points: "+diem);
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    // if(checktimer!=0)timer.cancel();
+                    timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase(a)){
 
                     diem+=100;
-                    tvDiem.setText("point: "+diem);
+                    tvDiem.setText("points: "+diem);
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         btnNo.setClickable(false);
                     }
                 }else{
-                    //if(checktimer!=0)timer.cancel();
+                    timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -167,5 +169,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         timer.cancel();
+        finish();
+
     }
 }
