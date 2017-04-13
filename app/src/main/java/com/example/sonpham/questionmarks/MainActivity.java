@@ -1,5 +1,6 @@
 package com.example.sonpham.questionmarks;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
-    LinearLayout lnl;
+    LinearLayout lnl,lnl2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=30,diem=0,checktimer=1;
     Animation animation;
@@ -42,18 +43,13 @@ public class MainActivity extends AppCompatActivity {
          @Override
          public void onFinish() {
 
-             //tvTime.setText((a-1)+"");
              Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
              btnYes.setClickable(false);
              btnNo.setClickable(false);
              ImageView imgv=new ImageView(MainActivity.this);
-             //((ViewManager)tvCauhoi.getParent()).removeView(tvCauhoi);
-             //lnl.removeView(tvCauhoi);
              lnl.addView(imgv);
-
              runAnimation(imgv);
              checktimer=0;
-
          }
      };
 
@@ -68,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         tvDiem=(TextView)findViewById( R.id.textView4);
         tvTime=(TextView)findViewById(R.id.textView5);
         lnl=(LinearLayout)findViewById(R.id.linearLayout);
-        Typeface typeface=Typeface.createFromAsset(getAssets(),"OpenSans-Regular.ttf");
+        lnl2=(LinearLayout)findViewById(R.id.linerLayout2);
+
+        Typeface typeface=Typeface.createFromAsset(getAssets(),"Chunkfive.otf");
         tvCauhoi.setTypeface(typeface);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         try {
@@ -88,15 +86,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String a= btnYes.getText().toString();
-                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase(a)){
-
+                //String a= btnYes.getText().toString();
+                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
                     diem+=100;
                     tvDiem.setText("points: "+diem);
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //if(checktimer!=0)timer.cancel();
+                        //if(timer!=null)timer.cancel();
 
                         //timer.start();
                         //startTimer(timer);
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    timer.cancel();
+                    if(timer!=null)timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -126,15 +123,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String a=btnNo.getText().toString();
-                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase(a)){
+                //String a=btnNo.getText().toString();
+                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
 
                     diem+=100;
                     tvDiem.setText("points: "+diem);
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //if(checktimer!=0)timer.cancel();
+                        //if(timer!=null)timer.cancel();
                         //timer.start();
                         //startTimer(timer);
                     }else
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         btnNo.setClickable(false);
                     }
                 }else{
-                    timer.cancel();
+                    if(timer!=null)timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -161,28 +158,29 @@ public class MainActivity extends AppCompatActivity {
     }
     public void startTimer(CountDownTimer _timer)
     {
-
-        _timer=new CountDownTimer(6000,1000) {
-            int a=3;
+        _timer=new CountDownTimer(12000,1000) {
+            int a=10;
             @Override
             public void onTick(long millisUntilFinished) {
-
-                tvTime.setText((a-1)+"s");
+                tvTime.setText((a)+"s");
                 if(a==0){
                     onFinish();
                     cancel();
                 }
                 a--;
-
             }
 
             @Override
             public void onFinish() {
 
-            tvTime.setText((a-1)+"");
-            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-            checktimer=0;
-
+                Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
+                btnYes.setClickable(false);
+                btnNo.setClickable(false);
+                ImageView imgv=new ImageView(MainActivity.this);
+                //lnl.removeView(tvCauhoi);
+                lnl.addView(imgv);
+                runAnimation(imgv);
+                checktimer=0;
             }
         };
         _timer.start();
@@ -202,9 +200,17 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.troll_face);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;
-
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
         imageView.setLayoutParams(layoutParams);
         imageView.startAnimation(animation);
+
     }
 
     @Override
@@ -215,3 +221,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

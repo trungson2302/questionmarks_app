@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/menubackground"
     android:gravity="top"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_gravity="end"
         android:orientation="vertical">
 
@@ -23,7 +24,7 @@
             android:layout_gravity="right"
             android:text="10 s"
             android:textColor="#ffffff"
-            android:textSize="50dp" />
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -32,7 +33,7 @@
             android:layout_gravity="right"
             android:text="points: 0"
             android:textColor="#ffffff"
-            android:textSize="50dp"
+            android:textSize="25dp"
 
             tools:layout_editor_absoluteX="44dp"
             tools:layout_editor_absoluteY="35dp" />
@@ -51,6 +52,13 @@
         tools:layout_editor_absoluteY="107dp" />
 
     <LinearLayout
+        android:id="@+id/linerLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -62,8 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="50dp"
-            android:background="@drawable/true_button"
-            android:text="Đúng"
+            android:background="@drawable/truebutton"
             tools:layout_editor_absoluteX="69dp"
             tools:layout_editor_absoluteY="247dp" />
 
@@ -72,8 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/true_button"
-            android:text="Sai"
+            android:background="@drawable/falsebutton"
+
             tools:layout_editor_absoluteX="253dp"
             tools:layout_editor_absoluteY="247dp" />
     </LinearLayout>
