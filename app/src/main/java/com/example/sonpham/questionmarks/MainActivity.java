@@ -16,8 +16,30 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=10,diem=0,checktimer=1;
-     CountDownTimer timer;
+    int index=0,socau=30,diem=0,checktimer=1;
+     CountDownTimer timer=new CountDownTimer(12000,1000) {
+         int a=10;
+         @Override
+         public void onTick(long millisUntilFinished) {
+
+             tvTime.setText((a)+"s");
+            if(a==0){
+                onFinish();
+                cancel();
+            }
+             a--;
+         }
+
+         @Override
+         public void onFinish() {
+
+             //tvTime.setText((a-1)+"");
+             Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
+             checktimer=0;
+
+         }
+     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi.close();
         inCauhoi(index);
         //startTimer(timer);
-        //timer.start();
+        timer.start();
 
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //if(checktimer!=0)cancleTimer(timer);
+                        //if(checktimer!=0)timer.cancel();
 
                         //timer.start();
-                        startTimer(timer);
+                        //startTimer(timer);
                     }else
                     {
 
@@ -69,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    // if(checktimer!=0)cancleTimer(timer);
+                    // if(checktimer!=0)timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -89,16 +111,16 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //if(checktimer!=0)cancleTimer(timer);
+                        //if(checktimer!=0)timer.cancel();
                         //timer.start();
-                        startTimer(timer);
+                        //startTimer(timer);
                     }else
                     {
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }else{
-                    //if(checktimer!=0)cancleTimer(timer);
+                    //if(checktimer!=0)timer.cancel();
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -108,36 +130,42 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void startTimer(CountDownTimer _timer)
-    {
-
-        _timer=new CountDownTimer(5000,1000) {
-            int a=4;
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-                tvTime.setText((a-1)+"s");
-                a--;
-
-            }
-
-            @Override
-            public void onFinish() {
-
-            tvTime.setText((a-1)+"");
-            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-            checktimer=0;
-
-            }
-        };
-        _timer.start();
-    }
-    public void cancleTimer(CountDownTimer _timer){
-        _timer.cancel();
-    }
+//    public void startTimer(CountDownTimer _timer)
+//    {
+//
+//        _timer=new CountDownTimer(5000,1000) {
+//            int a=4;
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//                tvTime.setText((a-1)+"s");
+//                a--;
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//
+//            tvTime.setText((a-1)+"");
+//            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
+//            checktimer=0;
+//
+//            }
+//        };
+//        _timer.start();
+//    }
+//    public void cancleTimer(CountDownTimer _timer){
+//        _timer.cancel();
+//    }
     public void inCauhoi(int n){
         tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
         if(index<socau){
         index++;}
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        timer.cancel();
     }
 }

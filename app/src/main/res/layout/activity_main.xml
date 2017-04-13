@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/background"
-    android:gravity="center_horizontal"
+    android:gravity="top"
+    android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.MainActivity">
 
     <LinearLayout
@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:textSize="50dp"
-            android:text="3s" />
+            android:text="10 s"
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -40,26 +40,27 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:text="TextView"
         android:layout_gravity="center"
+        android:gravity="center"
+        android:text="TextView"
         android:textSize="20dp"
-        tools:layout_editor_absoluteY="107dp"
-        tools:layout_editor_absoluteX="163dp" />
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="107dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đúng"
             android:layout_gravity="center"
             android:layout_marginRight="50dp"
             android:background="@drawable/true_button"
+            android:text="Đúng"
             tools:layout_editor_absoluteX="69dp"
             tools:layout_editor_absoluteY="247dp" />
 
@@ -67,9 +68,9 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sai"
-            android:background="@drawable/true_button"
             android:layout_gravity="center"
+            android:background="@drawable/true_button"
+            android:text="Sai"
             tools:layout_editor_absoluteX="253dp"
             tools:layout_editor_absoluteY="247dp" />
     </LinearLayout>
