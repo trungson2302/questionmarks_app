@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnYes,btnNo;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=10,diem=0;
-     //CountDownTimer timer;
+     CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         ds_cauhoi=quanLyCauHoi.layNcaungaunhien(socau);
         inCauhoi(index);
-        //startTimer(timer);
+        startTimer(timer);
         //timer.start();
 
         btnYes.setOnClickListener(new View.OnClickListener() {
@@ -56,16 +56,18 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //timer=null;
+                        cancleTimer(timer);
                         //timer.start();
-                        //startTimer(timer);
+                        startTimer(timer);
                     }else
                     {
+                        cancleTimer(timer);
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }
                 else {
+                    cancleTimer(timer);
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -85,15 +87,17 @@ public class MainActivity extends AppCompatActivity {
                     if(index<socau) {
                         inCauhoi(index);
                         //timer.cancel();
-                        //timer=null;
+                        cancleTimer(timer);
                         //timer.start();
-                        //startTimer(timer);
+                        startTimer(timer);
                     }else
                     {
+                        cancleTimer(timer);
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }else{
+                    cancleTimer(timer);
                     Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
                     btnYes.setClickable(false);
                     btnNo.setClickable(false);
@@ -103,32 +107,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-//    public void startTimer(CountDownTimer _timer)
-//    {
-//
-//        _timer=new CountDownTimer(4000,1000) {
-//            int a=3;
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                check=a-1;
-//                tvTime.setText((a-1)+"s");
-//                a--;
-//                if(check==0){
-//                    // cancel();
-//                    Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFinish() {
-////            tvTime.setText(a+"");
-////            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        };
-//        _timer.start();
-//    }
+    public void startTimer(CountDownTimer _timer)
+    {
+
+        _timer=new CountDownTimer(4000,1000) {
+            int a=3,check=0;
+            @Override
+            public void onTick(long millisUntilFinished) {
+                check=a-1;
+                tvTime.setText((a-1)+"s");
+                a--;
+
+            }
+
+            @Override
+            public void onFinish() {
+                cancleTimer(this);
+            tvTime.setText((a-1)+"");
+            Toast.makeText(MainActivity.this, "Ban thua", Toast.LENGTH_SHORT).show();
+
+
+            }
+        };
+        _timer.start();
+    }
+    public void cancleTimer(CountDownTimer _timer){
+        _timer.cancel();
+    }
     public void inCauhoi(int n){
         tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
         if(index<socau){
