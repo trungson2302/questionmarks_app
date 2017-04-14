@@ -2,10 +2,12 @@ package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button btnYes,btnNo;
     LinearLayout lnl,lnl2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=30,diem=0;
+    int index=0,socau=40,diem=0,check_backbtn=0;
     Animation animation;
+
 
     //CountDownTimer timer;
 //     CountDownTimer timer=new CountDownTimer(12000,1000) {
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         ds_cauhoi=quanLyCauHoi.layNcaungaunhien(socau);
         quanLyCauHoi.close();
+
+
         inCauhoi(index);
         startGame();
 //        btnYes.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
     public void loseAction(){
         Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
         String c= getRecord();
-        int a=Integer.parseInt(c);
+        int a=0;
+        if(c!=null)a=Integer.parseInt(c);
         String b= tvDiem.getText().toString();
         if(a<Integer.parseInt(b))
             writeRecord(b);
@@ -149,10 +155,12 @@ public class MainActivity extends AppCompatActivity {
         runAnimation(imgv);
     }
     public void startGame(){
+        final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
         final CountDownTimer _timer=new CountDownTimer(12000,1000) {
             int a=3;
             @Override
             public void onTick(long millisUntilFinished) {
+
                 tvTime.setText((a)+"s");
                 if(a==0){
                     onFinish();
@@ -163,7 +171,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                loseAction();
+                if(check_backbtn==1){}else {
+
+                    loseAction();
+                }
             }
         };
         _timer.start();
@@ -173,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                buttonSound.start();
                 _timer.cancel();
                 if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
                     diem+=100;
@@ -195,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                buttonSound.start();
                 _timer.cancel();
                 if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
 
@@ -241,7 +254,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public String getRecord(){
         String chuoi="";
-        File file = new File("record.txt");
+        String path = getFilesDir().getAbsolutePath();
+        File file = new File(path+"/record.txt");
         if(!file.exists())
         {
             try {
@@ -267,8 +281,9 @@ public class MainActivity extends AppCompatActivity {
         return chuoi;
     }
     public void writeRecord(String chuoi){
-        File file = new File("record.txt");
 
+        String path = getFilesDir().getAbsolutePath();
+        File file = new File(path+"/record.txt");
         if(!file.exists())
         {
             try {
@@ -291,10 +306,24 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        check_backbtn=1;
+        finish();
+//        stopService(new Intent(MainActivity.this, PlayMusic.class));
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startService(new Intent(MainActivity.this,PlayMusic.class));
+    }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        check_backbtn=1;
         finish();
+        super.onBackPressed();
     }
 }
 

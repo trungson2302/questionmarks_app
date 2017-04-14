@@ -1,9 +1,11 @@
 package com.example.sonpham.questionmarks;
 
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,11 +28,11 @@ public class BangdiemActivity extends AppCompatActivity {
             textView.setText(getRecord());
         }
 
-
     }
     public String getRecord(){
         String chuoi="";
-        File file = new File("record.txt");
+        String path = getFilesDir().getAbsolutePath();
+        File file = new File(path+"/record.txt");
         if(!file.exists())
         {
             try {
@@ -52,14 +54,16 @@ public class BangdiemActivity extends AppCompatActivity {
             in.read(buffer);
             chuoi=new String(buffer);
             in.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return chuoi;
     }
     public void writeRecord(String chuoi){
-        File file = new File("record.txt");
 
+        String path = getFilesDir().getAbsolutePath();
+        File file = new File(path+"/record.txt");
         if(!file.exists())
         {
             try {
@@ -84,5 +88,16 @@ public class BangdiemActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startService(new Intent(BangdiemActivity.this,PlayMusic.class));
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        stopService(new Intent(BangdiemActivity.this, PlayMusic.class));
+
+    }
 }

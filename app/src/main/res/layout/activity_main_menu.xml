@@ -41,7 +41,7 @@
         android:layout_margin="5dp"
         android:background="@drawable/true_button"
 
-        android:text="Gioi thieu" />
+        android:text="Settings" />
 
     <Button
         android:id="@+id/button7"
