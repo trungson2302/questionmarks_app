@@ -21,6 +21,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btnThoat=(Button)findViewById(R.id.button7);
 
         final Intent choimoi=new Intent(MainMenuActivity.this,MainActivity.class);
+        final Intent diemcao=new Intent(MainMenuActivity.this,BangdiemActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusic.class);
         startService(playMusic);
         btnChoimoi.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,12 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        btnDiemcao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(diemcao);
             }
         });
 
