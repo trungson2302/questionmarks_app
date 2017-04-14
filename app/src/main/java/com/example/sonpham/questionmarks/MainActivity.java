@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -18,9 +17,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,28 +26,29 @@ public class MainActivity extends AppCompatActivity {
     Button btnYes,btnNo;
     LinearLayout lnl,lnl2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=30,diem=0,checktimer=1;
+    int index=0,socau=30,diem=0;
     Animation animation;
+
     //CountDownTimer timer;
-     CountDownTimer timer=new CountDownTimer(12000,1000) {
-         int a=10;
-         @Override
-         public void onTick(long millisUntilFinished) {
-
-             tvTime.setText((a)+"s");
-            if(a==0){
-                onFinish();
-                cancel();
-            }
-             a--;
-         }
-
-         @Override
-         public void onFinish() {
-
-            loseAction();
-         }
-     };
+//     CountDownTimer timer=new CountDownTimer(12000,1000) {
+//         int a=10;
+//         @Override
+//         public void onTick(long millisUntilFinished) {
+//
+//             tvTime.setText((a)+"s");
+//            if(a==0){
+//                onFinish();
+//                cancel();
+//            }
+//             a--;
+//         }
+//
+//         @Override
+//         public void onFinish() {
+//
+//            loseAction();
+//         }
+//     };
 
 
     @Override
@@ -78,68 +76,66 @@ public class MainActivity extends AppCompatActivity {
         ds_cauhoi=quanLyCauHoi.layNcaungaunhien(socau);
         quanLyCauHoi.close();
         inCauhoi(index);
-        //startTimer(timer);
-        timer.start();
-        btnYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //String a= btnYes.getText().toString();
-
-                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
-                    diem+=100;
-                    tvDiem.setText(""+diem);
-                    if(index<socau) {
-                        inCauhoi(index);
-                        //timer.cancel();
-                        //if(timer!=null)timer.cancel();
-
-                        //timer.start();
-                        //startTimer(timer);
-                    }else
-                    {
-
-                        btnYes.setClickable(false);
-                        btnNo.setClickable(false);
-                    }
-                }
-                else {
-                    loseAction();
-                }
-
-            }
-        });
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                //String a=btnNo.getText().toString();
-                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
-
-                    diem+=100;
-                    tvDiem.setText(""+diem);
-                    if(index<socau) {
-                        inCauhoi(index);
-                        //timer.cancel();
-                        //if(timer!=null)timer.cancel();
-                        //timer.start();
-                        //startTimer(timer);
-                    }else
-                    {
-                        btnYes.setClickable(false);
-                        btnNo.setClickable(false);
-                    }
-                }else{
-                    loseAction();
-                    }
-            }
-        });
+        startGame();
+//        btnYes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                //String a= btnYes.getText().toString();
+//
+//                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
+//                    diem+=100;
+//                    tvDiem.setText(""+diem);
+//                    if(index<socau) {
+//                        inCauhoi(index);
+//                        //timer.cancel();
+//                        //if(timer!=null)timer.cancel();
+//
+//                        //timer.start();
+//                        //startTimer(timer);
+//                    }else
+//                    {
+//
+//                        btnYes.setClickable(false);
+//                        btnNo.setClickable(false);
+//                    }
+//                }
+//                else {
+//                    loseAction();
+//                }
+//
+//            }
+//        });
+//        btnNo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                //String a=btnNo.getText().toString();
+//                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
+//
+//                    diem+=100;
+//                    tvDiem.setText(""+diem);
+//                    if(index<socau) {
+//                        inCauhoi(index);
+//                        //timer.cancel();
+//                        //if(timer!=null)timer.cancel();
+//                        //timer.start();
+//                        //startTimer(timer);
+//                    }else
+//                    {
+//                        btnYes.setClickable(false);
+//                        btnNo.setClickable(false);
+//                    }
+//                }else{
+//                    loseAction();
+//                    }
+//            }
+//        });
 
     }
 
     public void loseAction(){
-        if(timer!=null)timer.cancel();
         Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
         String c= getRecord();
         int a=Integer.parseInt(c);
@@ -149,16 +145,12 @@ public class MainActivity extends AppCompatActivity {
         btnYes.setClickable(false);
         btnNo.setClickable(false);
         ImageView imgv=new ImageView(MainActivity.this);
-        //((ViewManager)tvCauhoi.getParent()).removeView(tvCauhoi);
-        //lnl.removeView(tvCauhoi);
         lnl.addView(imgv);
-
         runAnimation(imgv);
     }
-    public void startTimer(CountDownTimer _timer)
-    {
-        _timer=new CountDownTimer(12000,1000) {
-            int a=10;
+    public void startGame(){
+        final CountDownTimer _timer=new CountDownTimer(12000,1000) {
+            int a=3;
             @Override
             public void onTick(long millisUntilFinished) {
                 tvTime.setText((a)+"s");
@@ -171,22 +163,58 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
-                Toast.makeText(MainActivity.this, "Het gio", Toast.LENGTH_SHORT).show();
-                btnYes.setClickable(false);
-                btnNo.setClickable(false);
-                ImageView imgv=new ImageView(MainActivity.this);
-                //lnl.removeView(tvCauhoi);
-                lnl.addView(imgv);
-                runAnimation(imgv);
-                checktimer=0;
+                loseAction();
             }
         };
         _timer.start();
+        btnYes.setClickable(true);
+        btnNo.setClickable(true);
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                _timer.cancel();
+                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
+                    diem+=100;
+                    tvDiem.setText(""+diem);
+                    if(index<socau) {
+                        inCauhoi(index);
+                        startGame();
+                    }else
+                    {
+                        btnYes.setClickable(false);
+                        btnNo.setClickable(false);
+                    }
+                }
+                else {
+                    loseAction();
+                }
+            }
+        });
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                _timer.cancel();
+                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
+
+                    diem+=100;
+                    tvDiem.setText(""+diem);
+                    if(index<socau) {
+                        inCauhoi(index);
+                        startGame();
+                    }else
+                    {
+                        btnYes.setClickable(false);
+                        btnNo.setClickable(false);
+                    }
+                }else{
+                    loseAction();
+                }
+            }
+        });
     }
-    public void cancleTimer(CountDownTimer _timer){
-        _timer.cancel();
-    }
+
     public void inCauhoi(int n){
         tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
         if(index<socau){
@@ -217,20 +245,15 @@ public class MainActivity extends AppCompatActivity {
         if(!file.exists())
         {
             try {
-                    
                 file.createNewFile();
 
                     String s="0";
                     FileOutputStream out=openFileOutput("record.txt",MODE_PRIVATE);
                     out.write(s.getBytes());
                     out.close();
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            // write code for saving data to the file
         }
         try {
             FileInputStream in=openFileInput("record.txt");
@@ -255,12 +278,9 @@ public class MainActivity extends AppCompatActivity {
                 FileOutputStream out=openFileOutput("record.txt",MODE_PRIVATE);
                 out.write(s.getBytes());
                 out.close();
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            // write code for saving data to the file
         }
         try {
             FileOutputStream out=openFileOutput("record.txt",MODE_PRIVATE);
@@ -270,14 +290,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        timer.cancel();
         finish();
-
     }
 }
 
