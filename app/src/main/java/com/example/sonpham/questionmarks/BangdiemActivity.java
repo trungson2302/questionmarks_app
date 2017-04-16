@@ -1,9 +1,12 @@
 package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,11 +17,14 @@ import java.io.IOException;
 
 public class BangdiemActivity extends AppCompatActivity {
     TextView textView;
+    Button btnOK;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bangdiem);
         textView=(TextView)findViewById(R.id.textView2);
+        btnOK=(Button)findViewById(R.id.button8);
+        final  MediaPlayer btnSound=MediaPlayer.create(BangdiemActivity.this,R.raw.buttonsoundclick);
 
         textView.setText(getRecord());
         String text=textView.getText().toString();
@@ -27,6 +33,13 @@ public class BangdiemActivity extends AppCompatActivity {
             writeRecord("0");
             textView.setText(getRecord());
         }
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnSound.start();
+                finish();
+            }
+        });
 
     }
     public String getRecord(){

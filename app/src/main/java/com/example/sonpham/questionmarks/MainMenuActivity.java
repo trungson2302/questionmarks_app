@@ -139,8 +139,8 @@ public class MainMenuActivity extends AppCompatActivity {
         ///// hom_btncheck check xem nguoi dung bam HOME thi se goi stopService
         ///// activity_check check nguoi dung chuyen activity
         ///// back_check check nguoi dung bam BACK
-        if(back_check ==0 && activity_check==0)stopService(playMusic);
-
+        /////if(back_check ==0 && activity_check==0)stopService(playMusic);
+        stopService(playMusic);
     }
 
     @Override

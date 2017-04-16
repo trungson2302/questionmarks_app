@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity" />
-        <activity android:name=".MainMenuActivity">
+        <activity android:name=".MainMenuActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +24,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BangdiemActivity"></activity>
+        <activity android:name=".BangdiemActivity" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>

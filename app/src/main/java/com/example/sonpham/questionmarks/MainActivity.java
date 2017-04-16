@@ -21,12 +21,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
     LinearLayout lnl,lnl2;
+    ImageView imv2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=40,diem=0,check_backbtn=0;
     Animation animation;
@@ -64,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         tvDiem=(TextView)findViewById( R.id.textView4);
         tvTime=(TextView)findViewById(R.id.textView5);
         lnl=(LinearLayout)findViewById(R.id.linearLayout);
-        lnl2=(LinearLayout)findViewById(R.id.linerLayout2);
+        lnl2=(LinearLayout)findViewById(R.id.linearLayout2);
+        imv2=(ImageView)findViewById(R.id.imageView2);
 
         Typeface typeface=Typeface.createFromAsset(getAssets(),"Chunkfive.otf");
         tvCauhoi.setTypeface(typeface);
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi.close();
 
 
-        inCauhoi(index);
+        //inCauhoi(index);
         startGame();
 //        btnYes.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -141,20 +146,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loseAction(){
-        Toast.makeText(MainActivity.this, "Ban da thua", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
         String c= getRecord();
         int a=0;
         if(c!=null)a=Integer.parseInt(c);
-        String b= tvDiem.getText().toString();
+        final String b= tvDiem.getText().toString();
         if(a<Integer.parseInt(b))
             writeRecord(b);
+        btnYes.setVisibility(View.INVISIBLE);
+        btnNo.setVisibility(View.INVISIBLE);
         btnYes.setClickable(false);
         btnNo.setClickable(false);
-        ImageView imgv=new ImageView(MainActivity.this);
-        lnl.addView(imgv);
-        runAnimation(imgv);
+//        ImageView imgv=new ImageView(MainActivity.this);
+//        lnl.addView(imgv);
+        runAnimation(imv2);
+        MediaPlayer laugh=MediaPlayer.create(MainActivity.this,R.raw.trolllaugh);
+        laugh.start();
+        imv2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent= new Intent(MainActivity.this,ResultActivity.class);
+                intent.putExtra("kq",b);
+                startActivityForResult(intent,1);
+                finish();
+            }
+        },3000);
+
     }
     public void startGame(){
+        Toast.makeText(this, "start new game", Toast.LENGTH_SHORT).show();
+        inCauhoi();
         final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
         final CountDownTimer _timer=new CountDownTimer(12000,1000) {
             int a=3;
@@ -190,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     diem+=100;
                     tvDiem.setText(""+diem);
                     if(index<socau) {
-                        inCauhoi(index);
+                        //inCauhoi();
                         startGame();
                     }else
                     {
@@ -214,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                     diem+=100;
                     tvDiem.setText(""+diem);
                     if(index<socau) {
-                        inCauhoi(index);
+                        //inCauhoi();
                         startGame();
                     }else
                     {
@@ -228,8 +249,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void inCauhoi(int n){
-        tvCauhoi.setText(ds_cauhoi.get(n).getCauhoi());
+    public void inCauhoi(){
+        tvCauhoi.setText(ds_cauhoi.get(index).getCauhoi());
         if(index<socau){
         index++;}
     }
@@ -240,14 +261,14 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.troll_face);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=getIntent();
+//                finish();
+//                startActivity(intent);
+//            }
+//        });
         imageView.setLayoutParams(layoutParams);
         imageView.startAnimation(animation);
 

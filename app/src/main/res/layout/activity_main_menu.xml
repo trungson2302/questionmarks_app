@@ -14,32 +14,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/true_button"
-        android:text="Choi moi" />
+        android:background="@drawable/custon_button"
+        android:text="Chơi mới" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/true_button"
-        android:text="Diem cao" />
+        android:background="@drawable/custon_button"
+        android:text="Điểm cao" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/true_button"
+        android:background="@drawable/custon_button"
 
-        android:text="Huong dan" />
+        android:text="Hướng dẫn" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/true_button"
+        android:background="@drawable/custon_button"
 
         android:text="Settings" />
 
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/true_button"
+        android:background="@drawable/custon_button"
 
-        android:text="Thoat" />
+        android:text="Thoát" />
 </LinearLayout>
