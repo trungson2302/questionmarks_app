@@ -30,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
         final Intent diemcao=new Intent(MainMenuActivity.this,BangdiemActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusic.class);
 
+        overridePendingTransition(0,0);
         String path = getFilesDir().getAbsolutePath();
         File file = new File(path+"/record.txt");
         if(!file.exists())

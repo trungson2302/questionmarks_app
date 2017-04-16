@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         lnl2=(LinearLayout)findViewById(R.id.linearLayout2);
         imv2=(ImageView)findViewById(R.id.imageView2);
 
+        overridePendingTransition(0,0);
         Typeface typeface=Typeface.createFromAsset(getAssets(),"Chunkfive.otf");
         tvCauhoi.setTypeface(typeface);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
@@ -147,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void loseAction(){
         Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
+        MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
+
+        falseSound.start();
         String c= getRecord();
         int a=0;
         if(c!=null)a=Integer.parseInt(c);
@@ -177,13 +181,18 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "start new game", Toast.LENGTH_SHORT).show();
         inCauhoi();
         final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
-        final CountDownTimer _timer=new CountDownTimer(12000,1000) {
+
+        final CountDownTimer _timer=new CountDownTimer(12000,1001) {
             int a=3;
+
             @Override
             public void onTick(long millisUntilFinished) {
 
+                MediaPlayer beepSound=MediaPlayer.create(MainActivity.this,R.raw.beep);
                 tvTime.setText((a)+"s");
+                if(a!=0)beepSound.start();
                 if(a==0){
+
                     onFinish();
                     cancel();
                 }
@@ -192,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                //beepSound.start();
                 if(check_backbtn==1){}else {
 
                     loseAction();

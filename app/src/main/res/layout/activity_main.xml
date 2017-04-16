@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_gravity="end"
         android:orientation="vertical">
 
@@ -42,10 +42,11 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="30dp"
         tools:layout_editor_absoluteX="163dp"

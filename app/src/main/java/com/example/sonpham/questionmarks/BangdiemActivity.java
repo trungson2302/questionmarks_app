@@ -26,6 +26,7 @@ public class BangdiemActivity extends AppCompatActivity {
         btnOK=(Button)findViewById(R.id.button8);
         final  MediaPlayer btnSound=MediaPlayer.create(BangdiemActivity.this,R.raw.buttonsoundclick);
 
+        overridePendingTransition(0,0);
         textView.setText(getRecord());
         String text=textView.getText().toString();
         if(text==""){

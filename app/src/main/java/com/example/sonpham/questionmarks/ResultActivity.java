@@ -27,10 +27,10 @@ public class ResultActivity extends AppCompatActivity {
 
         final MediaPlayer buttonSound = MediaPlayer.create(ResultActivity.this,R.raw.buttonsoundclick);
 
-
+        overridePendingTransition(0,0);
         AlphaAnimation nhapnhay2=new AlphaAnimation(1,0);
         nhapnhay2.setRepeatCount(Animation.INFINITE);
-        nhapnhay2.setDuration(2000);
+        nhapnhay2.setDuration(1000);
         tvChu.startAnimation(nhapnhay2);
         String diem=getIntent().getExtras().getString("kq");
         int socau=Integer.parseInt(diem)/100;
@@ -51,6 +51,7 @@ public class ResultActivity extends AppCompatActivity {
                 buttonSound.start();
                 Intent intent=new Intent(ResultActivity.this,MainMenuActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //startActivity(intent);
                 finish();
             }
         });
