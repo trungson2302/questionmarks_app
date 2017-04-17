@@ -2,18 +2,15 @@ package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class BangdiemActivity extends AppCompatActivity {
     TextView textView;
@@ -105,13 +102,13 @@ public class BangdiemActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        startService(new Intent(BangdiemActivity.this,PlayMusic.class));
+        startService(new Intent(BangdiemActivity.this,PlayMusicService.class));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-//        stopService(new Intent(BangdiemActivity.this, PlayMusic.class));
+//        stopService(new Intent(BangdiemActivity.this, PlayMusicService.class));
 
     }
 }

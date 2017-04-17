@@ -28,7 +28,8 @@ public class MainMenuActivity extends AppCompatActivity {
         final MediaPlayer buttonSound = MediaPlayer.create(this,R.raw.buttonsoundclick);
         final Intent choimoi=new Intent(MainMenuActivity.this,MainActivity.class);
         final Intent diemcao=new Intent(MainMenuActivity.this,BangdiemActivity.class);
-        playMusic=new Intent(MainMenuActivity.this,PlayMusic.class);
+        final Intent huongdan =new Intent(MainMenuActivity.this,HuongdanActivity.class);
+        playMusic=new Intent(MainMenuActivity.this,PlayMusicService.class);
 
         overridePendingTransition(0,0);
         String path = getFilesDir().getAbsolutePath();
@@ -85,6 +86,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSound.start();
+                startActivity(huongdan);
                 /// neu co chuyen activity thi activity_check=1;
             }
         });
@@ -141,7 +143,7 @@ public class MainMenuActivity extends AppCompatActivity {
         ///// activity_check check nguoi dung chuyen activity
         ///// back_check check nguoi dung bam BACK
         /////if(back_check ==0 && activity_check==0)stopService(playMusic);
-        stopService(playMusic);
+        //stopService(playMusic);
     }
 
     @Override

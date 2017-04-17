@@ -6,9 +6,9 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 
-public class PlayMusic extends Service {
+public class PlayMusicService extends Service {
     private MediaPlayer mediaPlayer;
-    public PlayMusic() {
+    public PlayMusicService() {
     }
 
     @Override

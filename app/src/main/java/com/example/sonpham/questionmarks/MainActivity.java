@@ -1,5 +1,7 @@
 package com.example.sonpham.questionmarks;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -7,7 +9,6 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -21,9 +22,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout lnl,lnl2;
     ImageView imv2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=40,diem=0,check_backbtn=0;
+    int index=0,socau=40,diem=0,check_backbtn=0,dem=10;
     Animation animation;
+    boolean ready=false;
 
 
     //CountDownTimer timer;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //inCauhoi(index);
-        startGame();
+        startGame(dem);
 //        btnYes.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -150,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
         MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
 
+
         falseSound.start();
         String c= getRecord();
         int a=0;
@@ -177,13 +177,24 @@ public class MainActivity extends AppCompatActivity {
         },3000);
 
     }
-    public void startGame(){
+    public void traloisaiAction(){
+        Toast.makeText(MainActivity.this, "Bạn đã sai", Toast.LENGTH_SHORT).show();
+        MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
+
+        falseSound.start();
+        CustomDialog customDialog= new CustomDialog(this);
+        customDialog.show();
+        dem--;
+
+    }
+    public void startGame(int x){
         Toast.makeText(this, "start new game", Toast.LENGTH_SHORT).show();
         inCauhoi();
+        final int s =x;
         final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
 
         final CountDownTimer _timer=new CountDownTimer(12000,1001) {
-            int a=3;
+            int a=s;
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -222,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                     tvDiem.setText(""+diem);
                     if(index<socau) {
                         //inCauhoi();
-                        startGame();
+                        startGame(dem);
                     }else
                     {
                         btnYes.setClickable(false);
@@ -230,7 +241,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    loseAction();
+                    //loseAction();
+                    new AlertDialog.Builder(MainActivity.this).setMessage("Bạn đã sai, thời gian đếm ngược giảm 1s").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dem--;
+                            startGame(dem);
+                        }
+                    }).setIcon(R.drawable.troll_face).show();
                 }
             }
         });
@@ -246,14 +264,24 @@ public class MainActivity extends AppCompatActivity {
                     tvDiem.setText(""+diem);
                     if(index<socau) {
                         //inCauhoi();
-                        startGame();
+                        startGame(dem);
                     }else
                     {
                         btnYes.setClickable(false);
                         btnNo.setClickable(false);
                     }
                 }else{
-                    loseAction();
+                    //loseAction();
+                    new AlertDialog.Builder(MainActivity.this).setMessage("Bạn đã sai, thời gian đếm ngược giảm 1s").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dem--;
+                            startGame(dem);
+                        }
+                    }).setIcon(R.drawable.troll_face).show();
+                    //traloisaiAction();
+
+
                 }
             }
         });
@@ -343,12 +371,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         check_backbtn=1;
         finish();
-//        stopService(new Intent(MainActivity.this, PlayMusic.class));
+//        stopService(new Intent(MainActivity.this, PlayMusicService.class));
     }
     @Override
     protected void onRestart() {
         super.onRestart();
-        startService(new Intent(MainActivity.this,PlayMusic.class));
+        startService(new Intent(MainActivity.this,PlayMusicService.class));
     }
     @Override
     public void onBackPressed() {

@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/question_mark"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".MainMenuActivity"
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".MainMenuActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,12 +23,18 @@
         </activity>
 
         <service
-            android:name=".PlayMusic"
+            android:name=".PlayMusicService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BangdiemActivity" />
-        <activity android:name=".ResultActivity"></activity>
+        <activity
+            android:name=".BangdiemActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ResultActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".HuongdanActivity"></activity>
     </application>
 
 </manifest>
