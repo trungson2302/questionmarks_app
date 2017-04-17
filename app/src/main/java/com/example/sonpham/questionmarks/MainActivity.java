@@ -34,29 +34,6 @@ public class MainActivity extends AppCompatActivity {
     Animation animation;
     boolean ready=false;
 
-
-    //CountDownTimer timer;
-//     CountDownTimer timer=new CountDownTimer(12000,1000) {
-//         int a=10;
-//         @Override
-//         public void onTick(long millisUntilFinished) {
-//
-//             tvTime.setText((a)+"s");
-//            if(a==0){
-//                onFinish();
-//                cancel();
-//            }
-//             a--;
-//         }
-//
-//         @Override
-//         public void onFinish() {
-//
-//            loseAction();
-//         }
-//     };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,50 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loseAction(){
-        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
-        MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
-
-
-        falseSound.start();
-        String c= getRecord();
-        int a=0;
-        if(c!=null)a=Integer.parseInt(c);
-        final String b= tvDiem.getText().toString();
-        if(a<Integer.parseInt(b))
-            writeRecord(b);
-        btnYes.setVisibility(View.INVISIBLE);
-        btnNo.setVisibility(View.INVISIBLE);
-        btnYes.setClickable(false);
-        btnNo.setClickable(false);
-//        ImageView imgv=new ImageView(MainActivity.this);
-//        lnl.addView(imgv);
-        runAnimation(imv2);
-        MediaPlayer laugh=MediaPlayer.create(MainActivity.this,R.raw.trolllaugh);
-        laugh.start();
-        imv2.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent= new Intent(MainActivity.this,ResultActivity.class);
-                intent.putExtra("kq",b);
-                startActivityForResult(intent,1);
-                finish();
-            }
-        },3000);
-
-    }
-    public void traloisaiAction(){
-        Toast.makeText(MainActivity.this, "Bạn đã sai", Toast.LENGTH_SHORT).show();
-        MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
-
-        falseSound.start();
-        CustomDialog customDialog= new CustomDialog(this);
-        customDialog.show();
-        dem--;
-
-    }
     public void startGame(int x){
-        Toast.makeText(this, "start new game", Toast.LENGTH_SHORT).show();
         inCauhoi();
         final int s =x;
         final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
@@ -245,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     new AlertDialog.Builder(MainActivity.this).setMessage("Bạn đã sai, thời gian đếm ngược giảm 1s").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            buttonSound.start();
                             dem--;
                             startGame(dem);
                         }
@@ -287,6 +222,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void loseAction(){
+        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
+        MediaPlayer falseSound=MediaPlayer.create(MainActivity.this,R.raw.falsesound);
+
+
+        falseSound.start();
+        String c= getRecord();
+        int a=0;
+        if(c!=null)a=Integer.parseInt(c);
+        final String b= tvDiem.getText().toString();
+        if(a<Integer.parseInt(b))
+            writeRecord(b);
+        btnYes.setVisibility(View.INVISIBLE);
+        btnNo.setVisibility(View.INVISIBLE);
+        btnYes.setClickable(false);
+        btnNo.setClickable(false);
+        runAnimation(imv2);
+        MediaPlayer laugh=MediaPlayer.create(MainActivity.this,R.raw.trolllaugh);
+        laugh.start();
+        imv2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent= new Intent(MainActivity.this,ResultActivity.class);
+                intent.putExtra("kq",b);
+                startActivityForResult(intent,1);
+                finish();
+            }
+        },3000);
+
+    }
     public void inCauhoi(){
         tvCauhoi.setText(ds_cauhoi.get(index).getCauhoi());
         if(index<socau){

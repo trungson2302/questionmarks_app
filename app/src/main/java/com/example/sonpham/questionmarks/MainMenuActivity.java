@@ -2,6 +2,7 @@ package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
         final Intent choimoi=new Intent(MainMenuActivity.this,MainActivity.class);
         final Intent diemcao=new Intent(MainMenuActivity.this,BangdiemActivity.class);
         final Intent huongdan =new Intent(MainMenuActivity.this,HuongdanActivity.class);
+        final Intent settings=new Intent(MainMenuActivity.this, SettingsActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusicService.class);
 
         overridePendingTransition(0,0);
@@ -79,6 +81,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSound.start();
+                startActivity(settings);
                 /// neu co chuyen activity thi activity_check=1;
             }
         });

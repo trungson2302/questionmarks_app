@@ -1,5 +1,6 @@
 package com.example.sonpham.questionmarks;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,10 +17,12 @@ public class HuongdanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huongdan);
         btnOK=(Button)findViewById(R.id.button13);
         textView=(TextView)findViewById(R.id.textView8);
+        final MediaPlayer buttonSound = MediaPlayer.create(HuongdanActivity.this,R.raw.truefalseclick);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.start();
                 finish();
             }
         });
