@@ -1,6 +1,8 @@
 package com.example.sonpham.questionmarks;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout lnl,lnl2;
     ImageView imv2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=40,diem=0,check_backbtn=0,dem=10;
+    int index=0,socau=40,diem=0,check_backbtn=0,dem=5;
     Animation animation;
     boolean ready=false;
 
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         imv2=(ImageView)findViewById(R.id.imageView2);
 
         overridePendingTransition(0,0);
-        Typeface typeface=Typeface.createFromAsset(getAssets(),"Chunkfive.otf");
+        Typeface typeface=Typeface.createFromAsset(getAssets(),"GoodDog.otf");
         tvCauhoi.setTypeface(typeface);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         try {
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         ds_cauhoi=quanLyCauHoi.layNcaungaunhien(socau);
         quanLyCauHoi.close();
-
+        CustomDialog dialog=new CustomDialog(MainActivity.this);
 
         //inCauhoi(index);
         startGame(dem);
@@ -124,24 +128,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(int x){
         inCauhoi();
+
         final int s =x;
         final MediaPlayer buttonSound = MediaPlayer.create(MainActivity.this,R.raw.truefalseclick);
+        final MediaPlayer buttonOK =MediaPlayer.create(MainActivity.this,R.raw.buttonsoundclick);
 
-        final CountDownTimer _timer=new CountDownTimer(12000,1001) {
+        final CountDownTimer _timer=new CountDownTimer(12000,1000) {
             int a=s;
-
             @Override
             public void onTick(long millisUntilFinished) {
-
-                MediaPlayer beepSound=MediaPlayer.create(MainActivity.this,R.raw.beep);
+                MediaPlayer beepSound= MediaPlayer.create(MainActivity.this,R.raw.beep);
                 tvTime.setText((a)+"s");
-                if(a!=0)beepSound.start();
+                if(check_backbtn==1){
+                    cancel();
+                }else{
+                if(a!=0){
+                    beepSound.start();
+                    //beepSound.reset();
+                }
                 if(a==0){
 
                     onFinish();
                     cancel();
                 }
-                a--;
+                a--;}
             }
 
             @Override
@@ -176,14 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     //loseAction();
-                    new AlertDialog.Builder(MainActivity.this).setMessage("Bạn đã sai, thời gian đếm ngược giảm 1s").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            buttonSound.start();
-                            dem--;
-                            startGame(dem);
-                        }
-                    }).setIcon(R.drawable.troll_face).show();
+                    _timer.cancel();
+                    CustomDialog dialog=new CustomDialog(MainActivity.this);
+                    dialog.show();
                 }
             }
         });
@@ -206,16 +211,9 @@ public class MainActivity extends AppCompatActivity {
                         btnNo.setClickable(false);
                     }
                 }else{
-                    //loseAction();
-                    new AlertDialog.Builder(MainActivity.this).setMessage("Bạn đã sai, thời gian đếm ngược giảm 1s").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dem--;
-                            startGame(dem);
-                        }
-                    }).setIcon(R.drawable.troll_face).show();
-                    //traloisaiAction();
-
+                    _timer.cancel();
+                    CustomDialog dialog=new CustomDialog(MainActivity.this);
+                    dialog.show();
 
                 }
             }
@@ -257,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
         if(index<socau){
         index++;}
     }
+
     public void runAnimation(ImageView imageView)
     {
         animation=AnimationUtils.loadAnimation(this,R.anim.troll_face);
@@ -264,14 +263,6 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.troll_face);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=getIntent();
-//                finish();
-//                startActivity(intent);
-//            }
-//        });
         imageView.setLayoutParams(layoutParams);
         imageView.startAnimation(animation);
 
@@ -335,19 +326,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         check_backbtn=1;
+
         finish();
-//        stopService(new Intent(MainActivity.this, PlayMusicService.class));
+        //stopService(new Intent(MainActivity.this, PlayMusicService.class));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
-        startService(new Intent(MainActivity.this,PlayMusicService.class));
+        //startService(new Intent(MainActivity.this,PlayMusicService.class));
     }
     @Override
     public void onBackPressed() {
         check_backbtn=1;
         finish();
         super.onBackPressed();
+    }
+    class CustomDialog extends AlertDialog{
+
+            Button btnOK;
+        MediaPlayer btnSoundd;
+        protected CustomDialog(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.custom_dialog);
+            btnOK=(Button)findViewById(R.id.button12);
+
+            btnOK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    btnSoundd=MediaPlayer.create(MainActivity.this,R.raw.buttonsoundclick);
+                    btnSoundd.start();
+                    dem--;
+                    startGame(dem);
+                    dismiss();
+                }
+            });
+        }
     }
 }
 

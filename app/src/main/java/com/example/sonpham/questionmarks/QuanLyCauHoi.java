@@ -27,8 +27,8 @@ public class QuanLyCauHoi extends SQLiteOpenHelper{
     private static String CAU_A="A";
     private static String CAU_B="B";
     private static String DAP_AN="dap_an";
-    private SQLiteDatabase myDataBase;
     private final Context myContext;
+    private SQLiteDatabase myDataBase;
     public QuanLyCauHoi(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
         this.myContext=context;

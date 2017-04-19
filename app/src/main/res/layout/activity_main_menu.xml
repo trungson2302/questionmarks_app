@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menubackground"
+    android:background="@drawable/back_ground"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.MainMenuActivity">
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/custon_button"
+        android:background="@drawable/custom_button_red"
         android:text="Chơi mới" />
 
     <Button
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/custon_button"
+        android:background="@drawable/custom_button_red"
         android:text="Điểm cao" />
 
     <Button
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/custon_button"
+        android:background="@drawable/custom_button_red"
 
         android:text="Hướng dẫn" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/custon_button"
+        android:background="@drawable/custom_button_red"
 
         android:text="Settings" />
 
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/custon_button"
+        android:background="@drawable/custom_button_red"
 
         android:text="Thoát" />
 </LinearLayout>

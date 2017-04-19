@@ -21,9 +21,14 @@ public class cauhoi {
     }
 
     public int getID(){return _id;}
+
+public void setID(int id){ _id=id;}
+
     public String getCauhoi(){return cau_hoi;}
+
+    public void setCauhoi(String cauhoi){ cau_hoi=cauhoi;};
+
     public String getDap_an(){return dap_an;}
-    public void setID(int id){ _id=id;};
-    public void setCauhoi(String cauhoi){ cau_hoi=cauhoi;}
+
     public void setDap_an(String dapan){dap_an=dapan;}
 }

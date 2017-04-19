@@ -17,7 +17,7 @@ public class HuongdanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huongdan);
         btnOK=(Button)findViewById(R.id.button13);
         textView=(TextView)findViewById(R.id.textView8);
-        final MediaPlayer buttonSound = MediaPlayer.create(HuongdanActivity.this,R.raw.truefalseclick);
+        final MediaPlayer buttonSound = MediaPlayer.create(HuongdanActivity.this,R.raw.buttonsoundclick);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override

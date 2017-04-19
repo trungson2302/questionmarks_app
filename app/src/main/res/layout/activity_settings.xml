@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/back_ground"
     android:gravity="center"
-    android:background="@drawable/menubackground"
+    android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.SettingsActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/red_panel"
         android:orientation="vertical">
 
 
@@ -25,9 +26,9 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Volume:" />
+                android:text="Volume:"
+                android:textSize="20dp" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -42,9 +43,9 @@
             android:id="@+id/button14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:background="@drawable/custon_button"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_red"
             android:text="OK" />
     </LinearLayout>
 </LinearLayout>

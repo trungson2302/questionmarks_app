@@ -21,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         seekBar=(SeekBar)findViewById(R.id.seekBar);
         btnOK=(Button)findViewById(R.id.button14);
-        final MediaPlayer buttonSound = MediaPlayer.create(SettingsActivity.this,R.raw.truefalseclick);
+        final MediaPlayer buttonSound = MediaPlayer.create(SettingsActivity.this,R.raw.buttonsoundclick);
         audioManager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);

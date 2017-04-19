@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import com.facebook.FacebookSdk;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,7 +34,7 @@ public class ResultActivity extends AppCompatActivity {
         tvChu.startAnimation(nhapnhay2);
         String diem=getIntent().getExtras().getString("kq");
         int socau=Integer.parseInt(diem)/100;
-        tvResult.setText("Điểm: "+diem+" Số câu đúng: "+socau);
+        tvResult.setText("Điểm: "+diem+"\nSố câu đúng: "+socau);
 
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override

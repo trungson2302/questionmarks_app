@@ -31,7 +31,12 @@ public class PlayMusicService extends Service {
 
     @Override
     public void onDestroy() {
+        mediaPlayer.stop();
         mediaPlayer.release();
         super.onDestroy();
+
+    }
+    public void onPause(){
+        mediaPlayer.pause();
     }
 }

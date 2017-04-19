@@ -16,6 +16,7 @@ public class MainMenuActivity extends AppCompatActivity {
     Intent playMusic;
     int back_check =0,activity_check=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
         final Intent huongdan =new Intent(MainMenuActivity.this,HuongdanActivity.class);
         final Intent settings=new Intent(MainMenuActivity.this, SettingsActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusicService.class);
+
 
         overridePendingTransition(0,0);
         String path = getFilesDir().getAbsolutePath();
@@ -50,6 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
             // write code for saving data to the file
         }
+
 
         startService(playMusic);
         btnChoimoi.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +129,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         back_check =1;
         super.onBackPressed();
-        stopService(playMusic);
+        //stopService(playMusic);
+
         finish();
         System.exit(0);
     }
@@ -135,6 +139,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         stopService(playMusic);
+
     }
 
     @Override
@@ -147,18 +152,21 @@ public class MainMenuActivity extends AppCompatActivity {
         ///// back_check check nguoi dung bam BACK
         /////if(back_check ==0 && activity_check==0)stopService(playMusic);
         //stopService(playMusic);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         startService(playMusic);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        startService(playMusic);
+        //startService(playMusic);
+
 
     }
 
@@ -166,6 +174,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onRestart() {
         activity_check=0;
         super.onRestart();
+
         startService(playMusic);
     }
 }
