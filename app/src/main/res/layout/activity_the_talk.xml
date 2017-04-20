@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:background="@drawable/back_ground"
+    android:background="@drawable/city"
     tools:context="com.example.sonpham.questionmarks.TheTalkActivity"
     android:weightSum="1">
 
@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
             android:layout_weight="1"
             android:visibility="visible"

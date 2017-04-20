@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_gravity="end"
         android:orientation="vertical">
 
@@ -69,15 +69,14 @@
             tools:layout_editor_absoluteX="163dp"
             tools:layout_editor_absoluteY="107dp" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:foreground="@drawable/troll_face" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:foreground="@drawable/troll_face"
-         />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

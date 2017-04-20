@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0,0);
         Typeface typeface=Typeface.createFromAsset(getAssets(),"GoodDog.otf");
         Typeface typefacenumber=Typeface.createFromAsset(getAssets(),"digital.ttf");
-        tvCauhoi.setTypeface(typeface);
+        //tvCauhoi.setTypeface(typeface);
         tvTime.setTypeface(typefacenumber);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         try {
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
     {
         animation=AnimationUtils.loadAnimation(this,R.anim.troll_face);
         animation.setFillAfter(true);
-        imageView.setImageResource(R.drawable.troll_face);
+        imageView.setImageResource(R.drawable.jokerface);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;
         imageView.setLayoutParams(layoutParams);
