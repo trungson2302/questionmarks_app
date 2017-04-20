@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:background="@drawable/back_ground"
+    tools:context="com.example.sonpham.questionmarks.TheTalkActivity"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/batman" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:visibility="gone"
+            app:srcCompat="@drawable/joker" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="0.12"
+        android:background="@android:drawable/dialog_holo_dark_frame"
+        android:padding="30dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:padding="30dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:visibility="gone" />
+</LinearLayout>

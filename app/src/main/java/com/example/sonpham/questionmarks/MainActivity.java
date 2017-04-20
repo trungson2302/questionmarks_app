@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout lnl,lnl2;
     ImageView imv2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
-    int index=0,socau=40,diem=0,check_backbtn=0,dem=5;
+    int index=0,socau=40,diem=0,check_backbtn=0,dem=10;
     Animation animation;
     boolean ready=false;
 
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         overridePendingTransition(0,0);
         Typeface typeface=Typeface.createFromAsset(getAssets(),"GoodDog.otf");
+        Typeface typefacenumber=Typeface.createFromAsset(getAssets(),"digital.ttf");
         tvCauhoi.setTypeface(typeface);
+        tvTime.setTypeface(typefacenumber);
         QuanLyCauHoi quanLyCauHoi=new QuanLyCauHoi(MainActivity.this);
         try {
             quanLyCauHoi.createDataBase();
@@ -68,61 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         //inCauhoi(index);
         startGame(dem);
-//        btnYes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
 //
-//                //String a= btnYes.getText().toString();
-//
-//                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Đúng")){
-//                    diem+=100;
-//                    tvDiem.setText(""+diem);
-//                    if(index<socau) {
-//                        inCauhoi(index);
-//                        //timer.cancel();
-//                        //if(timer!=null)timer.cancel();
-//
-//                        //timer.start();
-//                        //startTimer(timer);
-//                    }else
-//                    {
-//
-//                        btnYes.setClickable(false);
-//                        btnNo.setClickable(false);
-//                    }
-//                }
-//                else {
-//                    loseAction();
-//                }
-//
-//            }
-//        });
-//        btnNo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                //String a=btnNo.getText().toString();
-//                if(ds_cauhoi.get(index-1).getDap_an().equalsIgnoreCase("Sai")){
-//
-//                    diem+=100;
-//                    tvDiem.setText(""+diem);
-//                    if(index<socau) {
-//                        inCauhoi(index);
-//                        //timer.cancel();
-//                        //if(timer!=null)timer.cancel();
-//                        //timer.start();
-//                        //startTimer(timer);
-//                    }else
-//                    {
-//                        btnYes.setClickable(false);
-//                        btnNo.setClickable(false);
-//                    }
-//                }else{
-//                    loseAction();
-//                    }
-//            }
-//        });
 
     }
 
@@ -138,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 MediaPlayer beepSound= MediaPlayer.create(MainActivity.this,R.raw.beep);
-                tvTime.setText((a)+"s");
+                tvTime.setText("00:"+String.format("%02d",a));
                 if(check_backbtn==1){
                     cancel();
                 }else{

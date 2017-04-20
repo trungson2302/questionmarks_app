@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="@drawable/red_panel"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -22,9 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:gravity="center"
             android:text=""
+            android:textAlignment="center"
             android:textSize="30dp" />
 
         <TextView

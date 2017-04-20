@@ -6,25 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/back_ground"
+    android:background="@drawable/wall"
     android:gravity="top"
     android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="25dp"
         android:layout_gravity="end"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="10 s"
-            android:textColor="#ffffff"
-            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -37,29 +28,48 @@
 
             tools:layout_editor_absoluteX="44dp"
             tools:layout_editor_absoluteY="35dp" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:background="@drawable/red_panel"
-        android:gravity="center"
-        android:text=""
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="107dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/screen_cauhoi"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="qeqw"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textColor="#000"
+            tools:layout_editor_absoluteX="163dp"
+            tools:layout_editor_absoluteY="107dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@drawable/timebomb1"
+            android:text="10 s"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+
+            tools:layout_editor_absoluteX="163dp"
+            tools:layout_editor_absoluteY="107dp" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -72,9 +82,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"

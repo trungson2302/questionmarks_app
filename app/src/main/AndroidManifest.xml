@@ -33,8 +33,11 @@
         <activity
             android:name=".ResultActivity"
             android:launchMode="singleInstance" />
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".HuongdanActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".HuongdanActivity" />
+        <activity android:name=".TheTalkActivity">
+
+        </activity>
     </application>
 
 </manifest>

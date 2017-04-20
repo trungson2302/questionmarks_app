@@ -1,18 +1,21 @@
 package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
 public class MainMenuActivity extends AppCompatActivity {
     Button btnChoimoi,btnDiemcao, btnSettings,btnThoat,btnHuongdan;
+    TextView tvName;
     Intent playMusic;
     int back_check =0,activity_check=0;
 
@@ -26,14 +29,17 @@ public class MainMenuActivity extends AppCompatActivity {
         btnHuongdan=(Button)findViewById(R.id.button5);
         btnSettings =(Button)findViewById(R.id.button6);
         btnThoat=(Button)findViewById(R.id.button7);
+        tvName=(TextView)findViewById(R.id.textView12);
 
         final MediaPlayer buttonSound = MediaPlayer.create(this,R.raw.buttonsoundclick);
-        final Intent choimoi=new Intent(MainMenuActivity.this,MainActivity.class);
+        final Intent choimoi=new Intent(MainMenuActivity.this,TheTalkActivity.class);
         final Intent diemcao=new Intent(MainMenuActivity.this,BangdiemActivity.class);
         final Intent huongdan =new Intent(MainMenuActivity.this,HuongdanActivity.class);
         final Intent settings=new Intent(MainMenuActivity.this, SettingsActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusicService.class);
-
+        Typeface typeface=Typeface.createFromAsset(getAssets(),"sprayme.ttf");
+        tvName.setTypeface(typeface);
+        tvName.setText("THÁCH ĐỐ\nBATMAN");
 
         overridePendingTransition(0,0);
         String path = getFilesDir().getAbsolutePath();
