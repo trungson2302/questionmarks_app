@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class HuongdanActivity extends AppCompatActivity {
 
     Button btnOK;
@@ -18,6 +22,10 @@ public class HuongdanActivity extends AppCompatActivity {
         btnOK=(Button)findViewById(R.id.button13);
         textView=(TextView)findViewById(R.id.textView8);
         final MediaPlayer buttonSound = MediaPlayer.create(HuongdanActivity.this,R.raw.buttonsoundclick);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override

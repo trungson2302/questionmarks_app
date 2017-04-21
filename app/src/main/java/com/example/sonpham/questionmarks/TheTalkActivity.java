@@ -10,6 +10,10 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import static android.view.View.GONE;
 
 public class TheTalkActivity extends AppCompatActivity {
@@ -27,14 +31,17 @@ public class TheTalkActivity extends AppCompatActivity {
         tvJoker=(TextView)findViewById(R.id.textView10);
         final Intent intent=new Intent(TheTalkActivity.this,MainActivity.class);
 
-
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         tvBat.setText("Đang tắm sữa tươi thì lại có tin báo thằng Giốc Cơ đi gây rối");
         tvJoker.setText("Chào chú dơi, rảnh quá không có gì làm nên anh đã đặt 1 quả bom lên tường nhà chú rồi");
         final Handler handler=new Handler();
         final Runnable runnable=new Runnable() {
             @Override
             public void run() {
-                tvBat.setText("Mặc dù không muốn đi nhưng lỡ mang danh công lý nên phải vác đít đi vậy");
+                tvBat.setText("Mặc dù không muốn đi nhưng lỡ mang danh công lý nên phải vác thân đi vậy");
                 tvBat.postDelayed(new Runnable() {
                     @Override
                     public void run() {

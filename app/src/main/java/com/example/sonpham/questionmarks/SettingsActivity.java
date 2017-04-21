@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class SettingsActivity extends AppCompatActivity {
 
     SeekBar seekBar;
@@ -24,6 +28,10 @@ public class SettingsActivity extends AppCompatActivity {
         final MediaPlayer buttonSound = MediaPlayer.create(SettingsActivity.this,R.raw.buttonsoundclick);
         audioManager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
 
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         seekBar.setMax(maxVolume);

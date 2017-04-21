@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,10 +15,8 @@
         android:layout_width="298dp"
         android:layout_height="306dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:background="@drawable/screen_cauhoi"
+        android:gravity="center"
         android:padding="20dp"
         android:text="Bạn có 10 giây để trả lời 1 câu hỏi đúng sai \nNếu bạn trả lời đúng trò chơi sẽ tiếp tục \nNếu bạn trả lời sai thời gian sẽ giảm đi 1 giây \nHãy cố gắng ghi được thật nhiều điểm nhé!"
         android:textAlignment="center"
@@ -28,6 +27,18 @@
         android:id="@+id/button13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button_red"
         android:text="OK" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="20dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 </LinearLayout>

@@ -6,9 +6,9 @@
         android:fromYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:toXScale="6"
+        android:toXScale="5"
 
-        android:toYScale="6"
+        android:toYScale="5"
         />
 
     <rotate

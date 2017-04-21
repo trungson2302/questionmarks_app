@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,13 +17,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="30dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/screen_cauhoi"
-        android:layout_margin="30dp"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#000"
         android:textAlignment="center"
+        android:textColor="#000"
         android:textSize="30dp" />
 
     <Button
@@ -33,4 +34,16 @@
         android:background="@drawable/custom_button_red"
         android:text="OK"
         />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="20dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+
 </LinearLayout>

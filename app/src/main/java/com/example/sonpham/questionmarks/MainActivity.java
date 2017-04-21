@@ -21,6 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         lnl2=(LinearLayout)findViewById(R.id.linearLayout2);
         imv2=(ImageView)findViewById(R.id.imageView2);
 
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         overridePendingTransition(0,0);
         Typeface typeface=Typeface.createFromAsset(getAssets(),"GoodDog.otf");
         Typeface typefacenumber=Typeface.createFromAsset(getAssets(),"digital.ttf");
@@ -208,6 +216,10 @@ public class MainActivity extends AppCompatActivity {
     {
         animation=AnimationUtils.loadAnimation(this,R.anim.troll_face);
         animation.setFillAfter(true);
+        tvTime.setVisibility(View.GONE);
+        btnNo.setVisibility(View.GONE);
+        btnYes.setVisibility(View.GONE);
+        tvCauhoi.setVisibility(View.GONE);
         imageView.setImageResource(R.drawable.jokerface);
         LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity=Gravity.CENTER;

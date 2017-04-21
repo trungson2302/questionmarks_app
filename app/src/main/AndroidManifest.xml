@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sonpham.questionmarks">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,12 +11,21 @@
         android:roundIcon="@mipmap/question_mark"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance" />
+            android:configChanges="orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainMenuActivity"
-            android:launchMode="singleInstance">
+            android:configChanges="orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,22 +33,32 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".BangdiemActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ResultActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HuongdanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TheTalkActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+
         <service
             android:name=".PlayMusicService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".BangdiemActivity"
-            android:launchMode="singleInstance" />
-        <activity
-            android:name=".ResultActivity"
-            android:launchMode="singleInstance" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".HuongdanActivity" />
-        <activity android:name=".TheTalkActivity">
-
-        </activity>
     </application>
 
 </manifest>

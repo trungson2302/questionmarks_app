@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,6 +27,10 @@ public class BangdiemActivity extends AppCompatActivity {
         btnOK=(Button)findViewById(R.id.button8);
         final  MediaPlayer btnSound=MediaPlayer.create(BangdiemActivity.this,R.raw.buttonsoundclick);
 
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         overridePendingTransition(0,0);
         textView.setText(getRecord());
         String text=textView.getText().toString();

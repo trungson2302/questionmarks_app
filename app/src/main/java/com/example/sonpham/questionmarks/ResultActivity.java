@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import com.facebook.FacebookSdk;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +31,10 @@ public class ResultActivity extends AppCompatActivity {
 
         final MediaPlayer buttonSound = MediaPlayer.create(ResultActivity.this,R.raw.buttonsoundclick);
 
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         overridePendingTransition(0,0);
         AlphaAnimation nhapnhay2=new AlphaAnimation(1,0);
         nhapnhay2.setRepeatCount(Animation.INFINITE);

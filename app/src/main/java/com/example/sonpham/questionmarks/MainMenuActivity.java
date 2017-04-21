@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -40,7 +44,10 @@ public class MainMenuActivity extends AppCompatActivity {
         Typeface typeface=Typeface.createFromAsset(getAssets(),"sprayme.ttf");
         tvName.setTypeface(typeface);
         tvName.setText("THÁCH ĐỐ\nBATMAN");
-
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         overridePendingTransition(0,0);
         String path = getFilesDir().getAbsolutePath();
         File file = new File(path+"/record.txt");
