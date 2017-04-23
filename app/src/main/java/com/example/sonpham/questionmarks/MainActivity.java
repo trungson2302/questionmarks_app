@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCauhoi,tvDiem,tvTime;
     Button btnYes,btnNo;
-    LinearLayout lnl,lnl2;
     ImageView imv2;
     ArrayList<cauhoi> ds_cauhoi=new ArrayList<cauhoi>();
     int index=0,socau=40,diem=0,check_backbtn=0,dem=10;
@@ -51,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         btnNo=(Button) findViewById(R.id.button2);
         tvDiem=(TextView)findViewById( R.id.textView4);
         tvTime=(TextView)findViewById(R.id.textView5);
-        lnl=(LinearLayout)findViewById(R.id.linearLayout);
-        lnl2=(LinearLayout)findViewById(R.id.linearLayout2);
         imv2=(ImageView)findViewById(R.id.imageView2);
 
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
@@ -201,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent= new Intent(MainActivity.this,ResultActivity.class);
                 intent.putExtra("kq",b);
                 startActivityForResult(intent,1);
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
                 finish();
             }
         },3000);
@@ -305,8 +303,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         check_backbtn=1;
-        finish();
         super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
     }
     class CustomDialog extends AlertDialog{
 

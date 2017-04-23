@@ -1,9 +1,7 @@
 package com.example.sonpham.questionmarks;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
-import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +19,6 @@ public class MainMenuActivity extends AppCompatActivity {
     Button btnChoimoi,btnDiemcao, btnSettings,btnThoat,btnHuongdan;
     TextView tvName;
     Intent playMusic;
-    int back_check =0,activity_check=0;
 
 
     @Override
@@ -41,14 +38,14 @@ public class MainMenuActivity extends AppCompatActivity {
         final Intent huongdan =new Intent(MainMenuActivity.this,HuongdanActivity.class);
         final Intent settings=new Intent(MainMenuActivity.this, SettingsActivity.class);
         playMusic=new Intent(MainMenuActivity.this,PlayMusicService.class);
-        Typeface typeface=Typeface.createFromAsset(getAssets(),"sprayme.ttf");
-        tvName.setTypeface(typeface);
-        tvName.setText("THÁCH ĐỐ\nBATMAN");
+//        Typeface typeface=Typeface.createFromAsset(getAssets(),"Chunkfive.otf");
+//        tvName.setTypeface(typeface);
+        tvName.setText("BATMAN\nGIẢI ĐỐ");
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2949508366818582~7558872153");
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        overridePendingTransition(0,0);
+
         String path = getFilesDir().getAbsolutePath();
         File file = new File(path+"/record.txt");
         if(!file.exists())
@@ -73,8 +70,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.start();
                 startActivity(choimoi);
-                activity_check=1;
-                //onStop();
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
 
             }
         });
@@ -90,7 +86,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.start();
                 startActivity(diemcao);
-                activity_check=1;
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
             }
         });
         btnSettings.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +94,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.start();
                 startActivity(settings);
-                /// neu co chuyen activity thi activity_check=1;
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
             }
         });
         btnHuongdan.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +102,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.start();
                 startActivity(huongdan);
-                /// neu co chuyen activity thi activity_check=1;
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
             }
         });
 
@@ -140,12 +136,14 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        back_check =1;
         super.onBackPressed();
-        //stopService(playMusic);
-
+        stopService(playMusic);
         finish();
-        System.exit(0);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override
@@ -185,7 +183,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        activity_check=0;
         super.onRestart();
 
         startService(playMusic);

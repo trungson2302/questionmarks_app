@@ -12,23 +12,14 @@
     android:orientation="vertical"
     tools:context="com.example.sonpham.questionmarks.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="0"
-        android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textColor="#000"
+        android:textSize="30dp"
 
         tools:layout_editor_absoluteX="44dp"
         tools:layout_editor_absoluteY="35dp" />

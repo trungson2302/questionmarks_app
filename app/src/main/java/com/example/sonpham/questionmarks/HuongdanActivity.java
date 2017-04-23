@@ -32,7 +32,15 @@ public class HuongdanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.start();
                 finish();
+                overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
     }
 }

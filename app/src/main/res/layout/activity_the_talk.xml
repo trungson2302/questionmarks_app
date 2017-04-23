@@ -42,7 +42,7 @@
         android:layout_height="150dp"
         android:layout_weight="0.12"
         android:background="@android:drawable/dialog_holo_dark_frame"
-        android:padding="30dp"
+        android:padding="10dp"
         android:text="TextView"
         android:textSize="20dp"
         android:visibility="visible" />
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:padding="30dp"
+        android:padding="10dp"
         android:text="TextView"
         android:textColor="#000000"
         android:textSize="20dp"

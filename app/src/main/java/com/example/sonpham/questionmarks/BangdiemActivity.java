@@ -44,6 +44,7 @@ public class BangdiemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 btnSound.start();
                 finish();
+                overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
             }
         });
 
@@ -111,6 +112,13 @@ public class BangdiemActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         startService(new Intent(BangdiemActivity.this,PlayMusicService.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
     }
 
     @Override

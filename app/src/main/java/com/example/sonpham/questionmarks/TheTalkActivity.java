@@ -57,7 +57,9 @@ public class TheTalkActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         startActivity(intent);
+                                        overridePendingTransition(R.anim.slidein,R.anim.slideout);
                                         finish();
+
                                     }
                                 },4000);
                             }
@@ -72,6 +74,7 @@ public class TheTalkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 handler.removeCallbacks(runnable);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
                 finish();
             }
         });
@@ -80,9 +83,17 @@ public class TheTalkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 handler.removeCallbacks(runnable);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slidein,R.anim.slideout);
                 finish();
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slidedown,R.anim.slidedowndown);
     }
 }

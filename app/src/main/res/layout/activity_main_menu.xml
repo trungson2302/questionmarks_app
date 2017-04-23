@@ -18,8 +18,8 @@
         android:padding="10dp"
         android:text=""
         android:textAlignment="center"
-        android:textColor="#9e74cc"
-        android:textSize="75dp"
+        android:textColor="#bf00ff"
+        android:textSize="50dp"
         android:textStyle="bold" />
 
     <Button

@@ -33,6 +33,7 @@
                 android:layout_gravity="left"
                 android:layout_marginBottom="10dp"
                 android:text="Volume:"
+                android:textColor="#000"
                 android:textSize="20dp" />
 
             <SeekBar
